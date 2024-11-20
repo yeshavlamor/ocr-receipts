@@ -2,28 +2,13 @@ import os
 import cv2
 import numpy as np
 from PIL import Image
-
-# convert image format 
-def heic2png(source_folder, target_folder):
-    os.makedirs(target_folder, exist_ok=True)
-
-    for file in os.listdir(source_folder):
-        if file.lower().endswith('.heic'):
-            source_file = os.path.join(source_folder, file)
-            target_file = os.path.join(target_folder, file.replace(".HEIC", ".PNG").replace(".heic", ".png"))
-
-            if not os.path.exists(target_file):
-              with Image(filename=source_file) as img:
-                  img.format = 'png'
-                  img.save(filename=target_file)
-
-    print("Conversion complete!")
+from utils import heic2png 
 
 # preprocessing techniques
 def set_image_dpi(file_path):
     img = Image.open(file_path)
     length_x, width_y = img.size
-    factor = min(1, float(1024.0 / length_x))
+    factor = min(1, float(1024.0 / lengtx))
     size = int(factor * length_x), int(factor * width_y)
     img_resized = img.resize(size, Image.LANCZOS)
     return np.array(img_resized)
