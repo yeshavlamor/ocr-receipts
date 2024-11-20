@@ -1,3 +1,4 @@
+# this script contains preprocessing functions to prepare images for ocr 
 import os
 import cv2
 import numpy as np
